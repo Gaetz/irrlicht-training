@@ -14,18 +14,21 @@ int main()
 	if (!device)
 		return 1;
 	device->setWindowCaption(L"3D Game");
-	
+
 	IVideoDriver* driver = device->getVideoDriver();
 	ISceneManager* smgr = device->getSceneManager();
 	IGUIEnvironment* guienv = device->getGUIEnvironment();
 
-	guienv->addStaticText(L"Hello World!", rect<s32>(10, 10, 260, 22), true);
+	IMeshSceneNode* cube = smgr->addCubeSceneNode(1, nullptr, 0, vector3df(2.0f, 0.f, 0.f), vector3df(0.0f, 45.f, 0.f));
+	cube->setMaterialFlag(E_MATERIAL_FLAG::EMF_LIGHTING, false);
+	ICameraSceneNode* camera = smgr->addCameraSceneNode(nullptr, vector3df(0.0f, 0.f, 0.f), vector3df(2.0f, 0.f, 0.f));
+
 
 	while (device->run())
 	{
 		driver->beginScene(true, true, SColor(255, 100, 101, 140));
 
-		guienv->drawAll();
+		smgr->drawAll();
 
 		driver->endScene();
 	}
