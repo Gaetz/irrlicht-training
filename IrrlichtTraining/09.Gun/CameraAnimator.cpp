@@ -137,12 +137,11 @@ bool CameraAnimator::isEventReceiverEnabled()const
 const bool CameraAnimator::getLeftMouseIsJustPressed()
 {
 	bool result = false;
-	if (leftMouseBufferOn) 
+	if (leftMouseIsJustPressed)
 	{
 		result = true;
-		leftMouseBufferOn = false;
+		leftMouseIsJustPressed = false;
 	}
-	result = result || leftMouseIsJustPressed;
 	return result;
 }
 

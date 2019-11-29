@@ -29,7 +29,6 @@ private:
 	bool keyIsDown[KEY_KEY_CODES_COUNT];
 	bool leftMouseIsJustPressed;
 	bool leftMouseHasBeenPressed;
-	bool leftMouseBufferOn;
 
 	IVideoDriver* driver;
 	ICursorControl* cursorControl;

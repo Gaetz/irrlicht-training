@@ -198,8 +198,10 @@ void shoot()
 {
 	vector3df cameraPosition = camera->getPosition();
 	vector3df cameraTarget = camera->getTarget();
+	vector3df shootDirection = cameraPosition - cameraTarget;
+	shootDirection.normalize();
 	vector2df position = vector2df(cameraPosition.X, cameraPosition.Z);
-	vector2df hitStep = vector2df(cameraTarget.X - cameraPosition.X, cameraTarget.Z - cameraPosition.Z) * 0.1f;
+	vector2df hitStep = vector2df(shootDirection.X, shootDirection.Z) * 0.1f;
 
 	printf("Position tir - x:%f z:%f \n", position.X, position.Y);
 	printf("hitStep - x:%f z:%f \n\n", hitStep.X, hitStep.Y);
@@ -211,6 +213,7 @@ void shoot()
 		{
 			if (entities[i]->getPosition().getDistanceFrom(position) < 0.25f)
 			{
+				printf("hit");
 				entities[i]->takeDamage(5);
 				return;
 			}
