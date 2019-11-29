@@ -17,7 +17,7 @@ public:
 	virtual ISceneNodeAnimator* createClone(ISceneNode* node, ISceneManager* newManager = 0);
 	virtual bool isEventReceiverEnabled() const;
 
-	const bool getLeftMouseIsJustPressed() const;
+	const bool getLeftMouseIsJustPressed();
 
 private:
 	// This is used to check whether a key is being held down
@@ -29,6 +29,7 @@ private:
 	bool keyIsDown[KEY_KEY_CODES_COUNT];
 	bool leftMouseIsJustPressed;
 	bool leftMouseHasBeenPressed;
+	bool leftMouseBufferOn;
 
 	IVideoDriver* driver;
 	ICursorControl* cursorControl;

@@ -40,11 +40,21 @@ bool CameraAnimator::OnEvent(const SEvent& event)
 
 	if (event.MouseInput.isLeftPressed())
 	{
-		leftMouseIsJustPressed = true;
+		if (!leftMouseHasBeenPressed && !leftMouseBufferOn)
+		{
+			leftMouseIsJustPressed = true;
+			leftMouseBufferOn = true;
+		}
+		else
+		{
+			leftMouseIsJustPressed = false;
+		}
+		leftMouseHasBeenPressed = true;
 	}
 	else
 	{
 		leftMouseIsJustPressed = false;
+		leftMouseHasBeenPressed = false;
 	}
 
 	return false;
@@ -124,9 +134,16 @@ bool CameraAnimator::isEventReceiverEnabled()const
 	return true;
 }
 
-const bool CameraAnimator::getLeftMouseIsJustPressed() const
+const bool CameraAnimator::getLeftMouseIsJustPressed()
 {
-	return leftMouseIsJustPressed;
+	bool result = false;
+	if (leftMouseBufferOn) 
+	{
+		result = true;
+		leftMouseBufferOn = false;
+	}
+	result = result || leftMouseIsJustPressed;
+	return result;
 }
 
 bool CameraAnimator::isKeyDown(EKEY_CODE keyCode) const

@@ -127,12 +127,12 @@ int main()
 	IMeshSceneNode* ground = smgr->addMeshSceneNode(groundMesh);
 	ground->setMaterialFlag(E_MATERIAL_FLAG::EMF_LIGHTING, false);
 	ground->setMaterialTexture(0, groundTexture);
-	ground->setPosition(vector3df(15.5f, -0.5f, 15.5f));
+	ground->setPosition(vector3df(15.5f, -0.495f, 15.5f));
 
 	IMeshSceneNode* ceiling = smgr->addMeshSceneNode(groundMesh);
 	ceiling->setMaterialFlag(E_MATERIAL_FLAG::EMF_LIGHTING, false);
 	ceiling->setMaterialTexture(0, ceilTexture);
-	ceiling->setPosition(vector3df(15.5f, 0.5f, 15.5f));
+	ceiling->setPosition(vector3df(15.5f, 0.495f, 15.5f));
 	ceiling->setRotation(vector3df(180.0f, 0.0f, 0.0f));
 
 	camera->setNearValue(0.1);
@@ -225,7 +225,7 @@ void draw()
 	driver->beginScene(true, true, SColor(255, 100, 101, 140));
 
 	smgr->drawAll();
-	driver->draw2DImage(gunTextures[gunCurrentFrame], recti(vector2di(490, 420), dimension2di(300, 300)), recti(0, 0, 512, 512), nullptr, nullptr, true);
+	driver->draw2DImage(gunTextures[gunCurrentFrame], recti(vector2di(390, 220), dimension2di(500, 500)), recti(0, 0, 512, 512), nullptr, nullptr, true);
 
 	driver->endScene();
 }
